@@ -31,7 +31,6 @@ import {
   DEEPSEEK_API_CONFIG,
   SILICONFLOW_API_CONFIG,
   AIApiConfig,
-  BalanceInfo as _BalanceInfo,
   USER_ACTIVE_APIS,
   getCurrencySymbol,
   classifyError,
@@ -89,7 +88,7 @@ function parseOpenRouterBalance(data: any): BalanceInfo | null {
     apiId: "openrouter",
     apiName: "OpenRouter",
     amount: limitRemaining,
-    currency: "$",
+    currency: getCurrencySymbol("USD"),
     limit,
     usage,
     limitRemaining,
@@ -255,6 +254,16 @@ function BalanceRow({
   )
 }
 
+// ─── 货币代码 → 显示名称对照 ─────────────────────────────
+
+function currencyLabel(code: string): string {
+  const map: Record<string, string> = {
+    '$': 'USD', '¥': 'CNY', '€': 'EUR', '£': 'GBP',
+    '₩': 'KRW', '₽': 'RUB', '₹': 'INR',
+  }
+  return map[code] || code
+}
+
 // ─── 多 API 组合小组件 ────────────────────────────────────
 
 function MultiBalanceWidget({
@@ -350,6 +359,9 @@ function SingleBalanceWidget({
             foregroundStyle={getBalanceColor(getBalanceLevel(balance.amount))}
           >
             {balance.currency}{formatAmount(balance.amount)}
+          </Text>
+          <Text font="caption2" foregroundStyle="systemGray2">
+            {currencyLabel(balance.currency)}
           </Text>
           {balance.isFreeTier && (
             <Text font="caption" foregroundStyle="systemGreen">免费套餐</Text>
