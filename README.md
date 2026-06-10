@@ -51,12 +51,12 @@ DeepSeek、OpenRouter、SiliconFlow 各自使用不同的货币：
 
 | 货币 | 符号 | 适用 API |
 |------|------|---------|
-| 美元 (USD) | `$` | DeepSeek、OpenRouter |
-| 人民币 (CNY) | `¥` | SiliconFlow |
+| 美元 (USD) | `$` | OpenRouter |
+| 人民币 (CNY) | `¥` | DeepSeek、SiliconFlow |
 | 欧元 (EUR) | `€` | DeepSeek（如 API 返回） |
 | 英镑 (GBP) | `£` | DeepSeek（如 API 返回） |
 
-> DeepSeek 的余额接口会动态返回货币类型（USD / EUR / GBP / CNY / JPY 等），小组件会自动识别并显示对应的货币符号，无需手动配置。
+> DeepSeek 的余额接口会动态返回货币类型（默认 CNY），小组件会自动识别并显示对应的货币符号。OpenRouter 固定使用 USD，SiliconFlow 固定使用 CNY。
 
 ## 安装步骤
 

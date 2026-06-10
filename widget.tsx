@@ -71,7 +71,7 @@ function parseDeepSeekBalance(data: any): BalanceInfo | null {
     apiId: DEEPSEEK_API_CONFIG.id,
     apiName: DEEPSEEK_API_CONFIG.displayName,
     amount,
-    currency: getCurrencySymbol(mainBalance.currency || "USD"),
+    currency: getCurrencySymbol(mainBalance.currency || "CNY"),
     lastUpdated: new Date(),
   }
 }

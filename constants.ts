@@ -50,7 +50,7 @@ export const DEEPSEEK_API_CONFIG: AIApiConfig = {
   logoSvgPath: 'icons/DeepSeek.svg',
   overrideColor: '#4D6BFE',
   description: 'DeepSeek AI API密钥',
-  currency: '$',
+  currency: '¥',
 }
 
 // ─── OpenRouter ───────────────────────────────────────────
