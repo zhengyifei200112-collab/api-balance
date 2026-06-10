@@ -75,15 +75,15 @@ DeepSeek、OpenRouter、SiliconFlow 各自使用不同的货币：
 
 1. 下载完成后，点击该文件
 2. 在弹出的菜单中选择 **「用 Scripting 打开」**
-3. 项目会自动导入到 Scripting App 中，你会在 Scripting 里看到：
-   ```
-   api-balance/
-   ├── index.tsx          ← 设置页面（配置密钥用）
-   ├── widget.tsx         ← 小组件（桌面显示用）→ ⭐ 选择这个
-   ├── constants.ts
-   ├── app_intents.tsx
-   └── icons/
-   ```
+在 Scripting 中你会看到这样的文件列表：
+```
+api-balance/
+├── main.tsx              ← ⭐ **小组件入口**（自动运行）
+├── index.tsx             ← 🔧 **设置页面**（配置密钥用）
+├── constants.ts
+├── app_intents.tsx
+└── icons/
+```
 
 ### 第 4 步：配置 API 密钥
 
