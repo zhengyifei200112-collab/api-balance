@@ -1,0 +1,44 @@
+{
+  "runInApp" : false,
+  "version" : "1.0.3",
+  "remoteResource" : null,
+  "contributors" : [
+
+  ],
+  "localizedNames" : {
+    "es" : "",
+    "zh" : "",
+    "pt" : "",
+    "it" : "",
+    "ru" : "",
+    "de" : "",
+    "en" : "",
+    "ja" : "",
+    "fr" : ""
+  },
+  "localizedDescriptions" : {
+    "zh" : "",
+    "en" : "",
+    "es" : "",
+    "pt" : "",
+    "ru" : "",
+    "de" : "",
+    "fr" : "",
+    "it" : "",
+    "ja" : ""
+  },
+  "name" : "api-balance ",
+  "icon" : "wallet.pass.fill",
+  "intentInputTypes" : [
+
+  ],
+  "iconImage" : "",
+  "color" : "rgba(238, 92, 98,1)",
+  "description" : "多 API 余额小组件：DeepSeek/OpenRouter/SiliconFlow 一个桌面小组件同时查看",
+  "entry" : "widget.tsx",
+  "author" : {
+    "homepage" : "https:\/\/github.com\/lilpard-mk",
+    "email" : "mk@meike.cyou",
+    "name" : "lilpard"
+  }
+}
