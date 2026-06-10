@@ -479,15 +479,14 @@ async function runAsWidget() {
   )
 }
 
-// ─── 统一入口：检测运行环境 ─────────────────────────────────
+// ─── 统一入口 ─────────────────────────────────────────────
 
-if (Script.runsAsWidget) {
-  // 小组件模式
-  runAsWidget().catch((e) => {
-    Widget.present(
-      <Text font="body" foregroundStyle="systemRed">{String(e)}</Text>
-    )
-  })
-}
+(async () => {
+  await runAsWidget()
+})().catch((e) => {
+  Widget.present(
+    <Text font="body" foregroundStyle="systemRed">{String(e)}</Text>
+  )
+})
 
 export {}
