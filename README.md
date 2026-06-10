@@ -19,9 +19,9 @@
 
 | API | 参数（名称） | 参数（数字） | 货币 |
 |-----|------------|------------|------|
-| DeepSeek | `deepseek` | `1` | 自动从 API 获取（通常 USD） |
-| OpenRouter | `openrouter` | `2` | USD `$` |
-| SiliconFlow | `siliconflow` | `5` | CNY `¥` |
+| DeepSeek | `deepseek` | `1` | 人民币 ¥（默认） |
+| OpenRouter | `openrouter` | `2` | 美元 $ |
+| SiliconFlow | `siliconflow` | `5` | 人民币 ¥ |
 
 ## 小组件参数用法
 
@@ -52,41 +52,83 @@ DeepSeek、OpenRouter、SiliconFlow 各自使用不同的货币：
 | 货币 | 符号 | 适用 API |
 |------|------|---------|
 | 美元 (USD) | `$` | OpenRouter |
-| 人民币 (CNY) | `¥` | DeepSeek、SiliconFlow |
+| 人民币 (CNY) | `¥` | DeepSeek（默认）、SiliconFlow |
 | 欧元 (EUR) | `€` | DeepSeek（如 API 返回） |
 | 英镑 (GBP) | `£` | DeepSeek（如 API 返回） |
 
-> DeepSeek 的余额接口会动态返回货币类型（默认 CNY），小组件会自动识别并显示对应的货币符号。OpenRouter 固定使用 USD，SiliconFlow 固定使用 CNY。
+## ⚠️ 重要：安装步骤（请仔细阅读）
 
-## 安装步骤
+### 第 1 步：安装 Scripting 应用
+从 App Store 下载 **Scripting**（不是 Scriptable，注意区分）
 
-### 1. 安装 Scripting 应用
-从 App Store 下载 [Scripting](https://apps.apple.com/app/scripting/id9116223691)
+[Scripting on App Store](https://apps.apple.com/app/scripting/id9116223691)
 
-### 2. 获取项目文件
-从 GitHub 仓库下载 `api-balance.scripting` 文件：
+### 第 2 步：下载正确的文件
 
-```
-https://github.com/zhengyifei200112-collab/api-balance
-```
+去 GitHub 仓库下载 **`api-balance.scripting`** 这个文件（不是点"Code → Download ZIP"）：
 
-### 3. 导入 Scripting
-1. 在 iPhone 上用 Safari 打开 GitHub 仓库
-2. 点击 `api-balance.scripting` → 下载
-3. 点击下载好的文件 → 选择「用 Scripting 打开」
-4. 项目会自动导入到 Scripting 中
+> https://github.com/zhengyifei200112-collab/api-balance
 
-### 4. 配置密钥
-1. 在 Scripting 中打开项目，运行 `index.tsx`
+打开仓库后，在文件列表中找到 **`api-balance.scripting`** → 点击它 → 点击 **Download** 按钮（或 Raw 按钮）
+
+### 第 3 步：导入 Scripting
+
+1. 下载完成后，点击该文件
+2. 在弹出的菜单中选择 **「用 Scripting 打开」**
+3. 项目会自动导入到 Scripting App 中，你会在 Scripting 里看到：
+   ```
+   api-balance/
+   ├── index.tsx          ← 设置页面（配置密钥用）
+   ├── widget.tsx         ← 小组件（桌面显示用）→ ⭐ 选择这个
+   ├── constants.ts
+   ├── app_intents.tsx
+   └── icons/
+   ```
+
+### 第 4 步：配置 API 密钥
+
+1. 在 Scripting 中点击 **`index.tsx`** 运行设置页面
 2. 分别设置 DeepSeek、OpenRouter、SiliconFlow 的 API Key
-3. API Key 保存在 iOS 设备私有存储中，安全可靠
+3. 密钥保存在 iPhone 私有存储中，安全可靠
 
-### 5. 添加桌面小组件
-1. 回到桌面，长按空白处 → 左上角 + 号
-2. 搜索 "Scripting" → 选择合适大小的小组件
-3. 点击小组件 → 选择 `api-balance` 脚本
-4. **参数栏留空**即可显示全部 API 余额
-5. 完成 ✅
+### 第 5 步：添加桌面小组件（最关键！）
+
+```
+1. 回到 iPhone 桌面 → 长按空白处 → 点击左上角 + 号
+2. 搜索 "Scripting" → 选择 Scripting 的任意小组件尺寸
+3. 点击「添加小组件」→ 它出现在桌面上
+4. ⭐ 长按这个小组件 → 选择「编辑小组件」
+5. ⭐ 在「脚本」选项中选择 → 点击 → 选择「widget.tsx」
+   └─ 注意：不要选 index.tsx，那是设置页面
+6. 「参数」栏：留空（显示全部 API）或按上面的参数表填写
+7. 点击桌面空白处完成
+```
+
+### 第 6 步：首次查看
+
+小组件会显示：
+
+```
+API 余额      🔄
+DeepSeek     ¥88.00
+OpenRouter   $12.34
+SiliconFlow  ¥56.23
+刚刚
+```
+
+如果显示红色错误，按照提示去设置页面更新对应的 API Key。
+
+---
+
+## ❓ 常见问题
+
+| 问题 | 解决方法 |
+|------|---------|
+| 小组件显示空白 | 检查是否选了 `widget.tsx`（不是 `index.tsx`） |
+| 显示"未设置密钥" | 去 `index.tsx` 设置页面填入对应的 API Key |
+| 显示红色错误 | 长按小组件 → 点刷新按钮 |
+| 余额没变化 | iOS 限制小组件刷新频率，等几分钟或点刷新 |
+| 想只看某些 API | 参数栏填 `deepseek,openrouter` 等组合 |
 
 ## 获取 API 密钥
 
