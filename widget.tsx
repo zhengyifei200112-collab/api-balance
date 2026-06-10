@@ -22,6 +22,7 @@ import {
   SVG,
   Path,
   Script,
+  Navigation,
 } from "scripting"
 
 import {
@@ -384,7 +385,7 @@ function SingleBalanceWidget({
 
 // ─── 小组件入口 ───────────────────────────────────────────
 
-(async () => {
+async function runAsWidget() {
   const lastRefresh = new Date()
   const param = Widget.parameter
   const targetIds = parseWidgetParam(param)
@@ -393,7 +394,6 @@ function SingleBalanceWidget({
   const isMultiMode = targetIds.length === 0
 
   if (isMultiMode) {
-    // 多 API 组合模式
     const balances: Record<string, BalanceInfo | null> = {}
 
     for (const config of USER_ACTIVE_APIS) {
@@ -477,10 +477,17 @@ function SingleBalanceWidget({
     <SingleBalanceWidget balance={balance} config={config} lastRefresh={lastRefresh} />,
     { policy: "after", date: new Date(Date.now() + 5 * 60 * 1000) }
   )
-})().catch((e) => {
-  Widget.present(
-    <Text font="body" foregroundStyle="systemRed">{String(e)}</Text>
-  )
-})
+}
+
+// ─── 统一入口：检测运行环境 ─────────────────────────────────
+
+if (Script.runsAsWidget) {
+  // 小组件模式
+  runAsWidget().catch((e) => {
+    Widget.present(
+      <Text font="body" foregroundStyle="systemRed">{String(e)}</Text>
+    )
+  })
+}
 
 export {}
